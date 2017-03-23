@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="english" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Technical Art</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="canonical" href="">
+        <meta name="author" content="Bob White" />
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Technical Art" />
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Technical Art"/>
+        <meta property="og:url" content=""/>
+        <meta property="og:description" content="Technical Art"/>
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="/theme/css/bootstrap.darkly.min.css" type="text/css"/>
+    <link href="/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/theme/css/pygments/monokai.css" rel="stylesheet">
+    <link rel="stylesheet" href="/theme/css/style.css" type="text/css"/>
+
+
+
+
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">
+Technical Art            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="/pages/resume.html">
+                             Resume
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-maya-tools-deployment"> Maya Tools Deployment 
+                  <span class="pull-right">
+                    <img src="images/icons/maya.png" height="24px" width="24px"> 
+                    <img src="images/icons/python.png" height="24px" width="24px"> 
+                  </span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-maya-tools-deployment" class="panel-collapse collapse show">
+              <div class="panel-body">
+                <p>Given our large number of concurrent projects, and usage of multiple engines we end up having to support multiple Maya versions.</p>
+<p>Some of our projects have been so long running that we often have to use older versions because plug-ins or required tools weren't updated to new ones.</p>
+<p>To help simplify our deployment process I converted our ancient Maya.env based system to one that uses <a href="http://help.autodesk.com/view/MAYAUL/2015/ENU/?guid=__files_GUID_130A3F57_2A5D_4E56_B066_6B86F68EEA22_htm">Maya Modules</a> instead.</p>
+<p>This actually let us define a bunch of individual modules, either for version specific tools, project specific code or just random environment variables needed to support other tools.</p>
+<div class="highlight">
+<pre style="font-size: 10px">
++ MayaVERSION:2017 Tools_2017 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2017
++ MayaVERSION:2016 Tools_2016 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2016
++ MayaVERSION:2015 Tools_2015 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2015
++ MayaVERSION:2015 Tools_2014 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2014
++ MayaVERSION:2015 Tools_2013 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2013
+
++ Tools 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_tools.zip
+
++ MayaLibraries 1.0 E:/maya_libraries
+PYTHONPATH +:= ags_libraries.zip
+PYTHONPATH +:= third_party_libraries.zip
+
++ Resources 1.0 E:/Resources
+AUDIO_RESOURCES +:= sounds
+IMAGE_RESOURCES +:= images
+PYMEL_CACHE +:= pymel_cache
+PYMEL_CONF +:= pymel_conf
+
++ Raw_Assets 1.0 E:/RawAssets
+PROJECT_01_ASSETS +:= project_01
+PROJECT_02_ASSETS +:= project_02
+PROJECT_03_ASSETS +:= project_03
+
++ Project_01_Tools 1.0 E:/maya_libraries
+PYTHONPATH +:= project_01_tools.zip
+
++ Perforce 1.0 None
+P4CLIENT = my_workspace
+P4PORT = localhost:1666
+P4USER = user
+</pre>
+</div>
+
+<p>The version specific section is for dealing with compiled libraries. Things like the p4python API, Qt, etc... this lets us keep these from being available across versions where the compiler version might have changed.</p>
+<p>Pure maya libraries are shipped out as zip files, this lets us easily package up tools, or libraries into contained deliverables and push them out to users all in one go.</p>
+<p>I actively keep third party libraries and tools separated from our internal ones, primarily to make upgrades and upstream integrations easier.</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-weather-system"> Unreal Tools
+                  <span class="pull-right">
+                    <img src="images/icons/unreal.png" height="24px" width="24px"> 
+                  </span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-weather-system" class="panel-collapse collapse show">
+              <div id="myCarousel-weather-system" class="carousel slide panel-body" data-ride="carousel" data-target="carousel" data-interval="false">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel-weather-system" data-slide-to="0"  class="active"> </li>
+                    <li data-target="#myCarousel-weather-system" data-slide-to="1" </li>
+                    <li data-target="#myCarousel-weather-system" data-slide-to="2" </li>
+                    <li data-target="#myCarousel-weather-system" data-slide-to="3" </li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                      <div class="item active" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><p class="text-primary"> Weather Manager System</h3>
+<p>So my work on our weather and dynamic time of day system fell into the classic "TechArt is the bridge between Art and Engineering" category. The Art team came up with some really fantastic blueprint actors and shaders, but didn't have a clean why to tie it back into our scenario system or the UI. Plus it was hilariously expensive because it was updating on tick instead of on demand.</p>
+<p>After sitting down with the principle artists, and an engineer we hashed out a simple event driven system, and some native actor classes that the various blueprints could build from. This let us move from on tick to on demand updates, and gave engineering the needed ability to hook in with the various game systems.</p>
+<p>Because the engineers were booked up for the sprint, I went ahead and implemented the needed glue classes, and helped the artists convert their systems. Then in the following sprint the engineers went ahead and hooked everything together on their end.</p>
+<p><img src="images/unreal/realtime_weather.gif" alt="Road Splines" width="100%"></p>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><p class="text-primary"> Rotate Spline At Point</h3>
+<p>This was a really simple custom blueprint function that I added to help with our road spline tool. </p>
+<p>It lets you set a rotation value at one of the splines internal points instead of at the major control points.</p>
+<p>This was used to allow for more granular level of conformance to the underlying terrain.</p>
+<p><img src="images/unreal/road_splines.gif" alt="Road Splines" width="100%"></p>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><p class="text-primary"> Baked Physics</h3>
+<p>So this was a fun little project that I had a hand in.</p>
+<p>We wanted to do some simulation driven effects for one of our projects, but needed an efficient way to actually run them in game.</p>
+<p>After a bit of discussion I proposed the idea of skinning the mesh to a whole lot of bones, and baking the simulation onto that.</p>
+<p>The rest of the team made a quick prototype, which gave us positive results, I then helped optimize the baking and setup speed of the tool.</p>
+<p>After mixing in some regular particle effects, we were able to get some pretty decent, reproducible effects.</p>
+<p><img src="images/unreal/baked_physics_ied.gif" alt="Baked Physics IED" width="100%"></p>
+<p><img src="images/unreal/baked_physics_building.gif" alt="Baked Physics Building" width="100%"></p>
+<p>An interesting side effect of using skeletal meshes was that they could now collide push other physics bodies around.</p>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><p class="text-primary"> Runtime Vertex Colors</h3>
+<p>In one of our recent projects we were looking into ways of handling damage effects in our vehicle shaders so that we could provide visual battle damage.</p>
+<p>One of our artists put together a clever prototype that worked by converting the impact location of a hit into UV-space and then writing that data to a rendertarget.</p>
+<p>The only downside was that his method required the use of 3 UV-sets as he was doing a circular projection along each axis and using that to generate a mask. </p>
+<p>So instead I created some blueprint nodes that instead would allow us to update the meshes vertex colors instead.</p>
+<p><img src="images/unreal/vertex_paint.gif" alt="Road Splines" width="100%"></p>
+                      </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel-weather-system" role="button" data-slide="prev" style="height: 40px; width: 40px">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel-weather-system" role="button" data-slide="next" style="height: 40px; width: 40px">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-player-factory"> Unity Tools
+                  <span class="pull-right">
+                    <img src="images/icons/unity.jpg" height="24px" width="24px"> 
+                  </span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-player-factory" class="panel-collapse collapse show">
+              <div id="myCarousel-player-factory" class="carousel slide panel-body" data-ride="carousel" data-target="carousel" data-interval="false">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel-player-factory" data-slide-to="0"  class="active"> </li>
+                    <li data-target="#myCarousel-player-factory" data-slide-to="1" </li>
+                    <li data-target="#myCarousel-player-factory" data-slide-to="2" </li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                      <div class="item active" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><p class="text-primary"> Player Factory</h3>
+<p>So I think any Unity project that grows beyond a certain size runs into the problem of managing complex or nested prefabs.</p>
+<p>For us our complex time wasters were our player prefabs, updating a shared component, or a shared asset could incur hours of annoying fiddly work reconstructing the prefabs "just right", and some step would inevitably be missed and we'd end up breaking the build.</p>
+<p>To combat this the Engineering lead and I sat down and created a simple PlayerFactory toolset that would take a bunch of data assets, component templates, visual assets, etc... and reconstruct the final prefabs for us in a single pass.</p>
+<p><img src="images/unity/unity_player_factory.gif" alt="Player Factory" width="100%"></p>
+<p>The factory can actually generate new prefabs, or update the existing ones in place. This way we could test changes in stages as the characters updated.</p>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><p class="text-primary"> FBX Import Tools</h3>
+<p>Our FBX importer is built around Unity's <a href="https://docs.unity3d.com/ScriptReference/AssetPostprocessor.html">AssetPostprocessor</a>, and <a href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObjects</a>.</p>
+<p>The AssetPostprocessor handles all the heavy lifting, while the ScriptableObjects define what settings to apply and where to apply them.</p>
+<p>Basically I created a custom <code>ImportSettingsAsset</code> that can apply either globally to a folder, or to individual assets. They end up behaving light dot-files in that deeper nested settings will override values, with individual asset settings always winning.</p>
+<p>Currently the importer handles a variety of situations:
+- Scaling Animations to match game scale
+- Assigning default Avatar assets
+- Assigning default materials
+- Adding components and assigning default values
+- Generating Character output prefabs from complex assets</p>
+<p>That last one is rather important as it feeds directly into the Player Factory tools.</p>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><p class="text-primary"> Football - Animation Harvester</h3>
+<h4>Quick background on our Football application:</h4>
+<p>Our football app is a virtual playbook generator. It allows coaches to draw, save, and share play information, and then play those back in 3D from any perspective. It comes with custom drill creation tools, and other learning aids. Most of the animation is procedurally generated by blending a bunch of game loops, but we also incorporated specific special root-motion driven actions for specific complex actions.</p>
+<p>Our animation harvesting tool is another that rely on the <a href="https://docs.unity3d.com/ScriptReference/AssetPostprocessor.html">AssetPostprocessor</a>, it was built specifically to help us convert our root-motion animations into a data format that matched with our procedural path-driven system.</p>
+<p>It does this by extracting the final computed root-driven translation and rotation curves from the animation asset, and combines it with metadata exported from Maya into data classes that the application can access at runtime.</p>
+<p>Our first pass of this actually worked entirely inside Maya, but these ended up being imprecise because of Unity's targeting and animation compression passes. Once we figured out why our data wasn't working, we moved the entire system into Unity to capture after these final stages.</p>
+                      </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel-player-factory" role="button" data-slide="prev" style="height: 40px; width: 40px">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel-player-factory" role="button" data-slide="next" style="height: 40px; width: 40px">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-mgui"> mGui
+                  <span class="pull-right">
+                    <img src="images/icons/maya.png" height="24px" width="24px"> 
+                    <img src="images/icons/python.png" height="24px" width="24px"> 
+                  </span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-mgui" class="panel-collapse collapse show">
+              <div id="myCarousel-mgui" class="carousel slide panel-body" data-ride="carousel" data-target="carousel" data-interval="false">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel-mgui" data-slide-to="0"  class="active"> </li>
+                    <li data-target="#myCarousel-mgui" data-slide-to="1" </li>
+                    <li data-target="#myCarousel-mgui" data-slide-to="2" </li>
+                    <li data-target="#myCarousel-mgui" data-slide-to="3" </li>
+                    <li data-target="#myCarousel-mgui" data-slide-to="4" </li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                      <div class="item active" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h3><a href="https://github.com/theodox/mGui">mGui</a></h3>
+<hr>
+<h4>A module for simplifying Maya GUI coding</h4>
+<h3><p class="text-primary"> Overview</h3>
+<hr>
+<blockquote>
+<p>mGui is a python module for simplifying GUI creation using Maya's built-in gui widgets. As such it is not a replacement for something more sophisticated, like PyQT or PySide - it's a way to make simple UI more quickly and reliably (and without the need for distributing any DLLs in older versions of Maya).</p>
+</blockquote>
+<p>mGui is an open source project started by <a href="https://theodox.github.io">Steve Theodore</a> that I am an active collaborator and maintainer on. </p>
+<p>Some features that I've worked on recently:</p>
+<ul>
+<li>Extending Event system</li>
+<li>Data driven shelf builder</li>
+<li>Adding a Qt compatibility library</li>
+<li>Added MSceneMessageEvents library</li>
+</ul>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h2><p class="text-primary"> mGui Event Extension</h2>
+<hr>
+<p>So mGui uses <a href="https://docs.python.org/2/library/weakref.html">weak-references</a> to track the lifetime of event handlers.
+This helps to ensure that we don't get weird phantom events hanging around after a portion of the gui has been updated or changed.</p>
+<p>But it does make it so super simple gui's like the following have to add noise at the end to ensure that the handlers dont' go out of scope and get cleaned up.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">gui</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span> <span class="k">as</span> <span class="n">test_window</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">forms</span><span class="o">.</span><span class="n">VerticleForm</span><span class="p">()</span> <span class="k">as</span> <span class="n">main</span><span class="p">:</span>
+            <span class="n">more</span> <span class="o">=</span> <span class="n">gui</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;more!&#39;</span><span class="p">)</span>
+            <span class="n">close</span> <span class="o">=</span> <span class="n">gui</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;close&#39;</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">close_window</span><span class="p">(</span><span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">):</span>
+                <span class="n">cmds</span><span class="o">.</span><span class="n">deleteUI</span><span class="p">(</span><span class="n">test_window</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">show_more</span><span class="p">(</span><span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="s1">&#39;show_more&#39;</span><span class="p">)</span>
+
+    <span class="c1"># bind the functions to the handlers</span>
+    <span class="n">close</span><span class="o">.</span><span class="n">command</span> <span class="o">+=</span> <span class="n">close_window</span>
+    <span class="n">more</span><span class="o">.</span><span class="n">command</span> <span class="o">+=</span> <span class="n">show_more</span>
+    <span class="c1"># keep a reference to the handlers so the event doesn&#39;t expire</span>
+    <span class="n">test_window</span><span class="o">.</span><span class="n">close</span> <span class="o">=</span> <span class="n">close</span>
+    <span class="n">test_window</span><span class="o">.</span><span class="n">more</span> <span class="o">=</span> <span class="n">more</span>
+
+    <span class="k">return</span> <span class="n">test_window</span>
+</pre></div>
+
+
+<p>So instead I came up with a way to extend the event binding signature to solve this instead:</p>
+<div class="highlight"><pre><span></span>    <span class="n">close</span><span class="o">.</span><span class="n">command</span> <span class="o">+=</span> <span class="n">close_window</span><span class="p">,</span> <span class="n">test_window</span>
+    <span class="n">more</span><span class="o">.</span><span class="n">command</span> <span class="o">+=</span> <span class="n">show_more</span><span class="p">,</span> <span class="n">test_window</span>
+</pre></div>
+
+
+<p>Under the hood it is basically doing the same assignment but in a much cleaner syntax.</p>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h2><p class="text-primary"> mGui Shelf Loader</h2>
+<hr>
+<p>So mGui already had a system for loading menu's from a data file. 
+Which is great for reducing the fairly tedious boilerplate that comes with defining a shared menu.</p>
+<p>When an enhancement proposal was added for doing the same thing for shared shelves, I realized I had written one of these before, and doing so again should be fairly simple.</p>
+<p>In fact I've since gone back and replaced my old one with this newer implementation.</p>
+<p>The features are fairly straight forward:</p>
+<ul>
+<li>Allows for in place editing of <code>ShelfButton</code> instances.</li>
+<li>Preserves any buttons added by the user.</li>
+<li>Allows for right-click items, and double-click commands</li>
+<li>Processes environment variables when loading icons.</li>
+</ul>
+<p>So the loader expects data to be in a pretty simple dictionary format:</p>
+<div class="highlight"><pre><span></span><span class="n">shelf</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;mGuiExamples&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;parent&quot;</span><span class="p">:</span> <span class="s2">&quot;ShelfLayout&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;controls&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&quot;imageOverlayLabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Basic&quot;</span><span class="p">,</span> 
+          <span class="s2">&quot;sourceType&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span> 
+          <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;commandButton.png&quot;</span><span class="p">,</span> 
+          <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;BasicList&quot;</span><span class="p">,</span> 
+          <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;from mGui.examples import basicList&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;basicList = reload(basicList)&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;basic_list = basicList.basic_list_binding()&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;basic_list.show()&quot;</span><span class="p">],</span>
+          <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;BasicList&quot;</span><span class="p">,</span> 
+          <span class="s2">&quot;docTag&quot;</span><span class="p">:</span> <span class="s2">&quot;d52cc141423c4497ad04e5b19d7a15f0&quot;</span><span class="p">,</span> 
+          <span class="s2">&quot;annotation&quot;</span><span class="p">:</span> <span class="s2">&quot;Basic List Example&quot;</span>
+        <span class="p">},</span> 
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This means that users can either store this directly in a python file, or better yet serialize it out to some data format.</p>
+<p>The available <a href="https://github.com/theodox/mGui/blob/master/mGui/examples/shelf_example.json">example</a> that ships with mGui serializes the shelf out to a json file. </p>
+<p>I happen to prefer serializing to yaml as it gives me a cleaner ability to store the commands as multi-line strings.</p>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h2><p class="text-primary"> Qt Compatibility</h2>
+<hr>
+<p>mGui is pretty Qt-lite but there are some specialty tools and examples that rely on accessing Qt specific features. </p>
+<p>Maya2017 upgraded Qt4.8.6 to Qt5.6.1, they also updated from PySide to PySide2.</p>
+<p>This means that we no longer have a compatible API for accessing Qt features from python.</p>
+<p>To fix this I've been adding a very bare-bones compatibility shim that lets us abstract away the various Qt binding libraries that could be used across the current Maya versions.</p>
+<p>The rules are pretty simple:</p>
+<ul>
+<li>Favors PySide over PyQt</li>
+<li>Favors Qt5 bindings over Qt4</li>
+</ul>
+<p>Provides 3 main modules: <code>QtCore</code>, <code>QtGui</code>, <code>QtWidgets</code>
+Provides a few helper functions: <code>main_window</code>, <code>as_qt_object</code>, <code>load_ui</code></p>
+<p>This lets us easily write something like the following:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">maya</span> <span class="kn">import</span> <span class="n">cmds</span>
+<span class="kn">from</span> <span class="nn">mGui.core</span> <span class="kn">import</span> <span class="n">BindingWindow</span>
+<span class="kn">from</span> <span class="nn">mGui.qt._compat</span> <span class="kn">import</span> <span class="n">as_qt_object</span><span class="p">,</span> <span class="n">QtCore</span>
+
+<span class="n">APPLICATION_MODAL</span> <span class="o">=</span> <span class="n">QtCore</span><span class="o">.</span><span class="n">Qt</span><span class="o">.</span><span class="n">WindowModality</span><span class="o">.</span><span class="n">ApplicationModal</span>
+
+<span class="k">class</span> <span class="nc">QModalWindow</span><span class="p">(</span><span class="n">BindingWindow</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QModalWindow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_qt_obj</span> <span class="o">=</span> <span class="n">as_qt_object</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_qt_obj</span><span class="o">.</span><span class="n">setWindowModality</span><span class="p">(</span><span class="n">APPLICATION_MODAL</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_qt_obj</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">forget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QModalWindow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">forget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_qt_obj</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">hide</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_qt_obj</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">dismiss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span>
+        <span class="n">cmds</span><span class="o">.</span><span class="n">deleteUI</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">typ</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="n">mGui_expand_stack</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">QModalWindow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="n">typ</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Which is a modal version of <code>mGui.gui.BindingWindow</code>, and can be used like any other <code>mGui.gui.Window</code> class.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">maya</span> <span class="kn">import</span> <span class="n">cmds</span>
+<span class="kn">from</span> <span class="nn">mGui</span> <span class="kn">import</span> <span class="n">gui</span><span class="p">,</span> <span class="n">forms</span>
+<span class="kn">from</span> <span class="nn">mGui.qt.QModalWindow</span> <span class="kn">import</span> <span class="n">QModalWindow</span>
+
+<span class="k">with</span> <span class="n">QModalWindow</span><span class="p">()</span> <span class="k">as</span> <span class="n">win</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">forms</span><span class="o">.</span><span class="n">FillForm</span><span class="p">()</span> <span class="k">as</span> <span class="n">main</span><span class="p">:</span>
+        <span class="n">btn</span> <span class="o">=</span> <span class="n">gui</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Dismiss&#39;</span><span class="p">)</span>
+
+        <span class="n">btn</span><span class="o">.</span><span class="n">command</span> <span class="o">+=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">x</span><span class="p">:</span> <span class="n">cmds</span><span class="o">.</span><span class="n">deleteUI</span><span class="p">(</span><span class="n">win</span><span class="p">),</span> <span class="n">btn</span>
+
+<span class="n">win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+                      </div>
+                    </div>
+                       <div class="item" style="height: 650px">
+                      <div class="container" style="width: 100%; overflow-y: auto; max-height: 615px">
+                        <h2><p class="text-primary"> MSceneMessageEvents</h2>
+<hr>
+<p>I really liked the event wrapper around <a href="https://github.com/theodox/mGui/blob/master/mGui/scriptJobs.py">scritpJobs</a>, but ran into some issues when updating some of my tools because <code>scriptJobs</code> don't have granular enough events to trigger when referencing files.</p>
+<p>So I created a library that mimics the API from the <a href="https://github.com/theodox/mGui/blob/master/mGui/scriptJobs.py">scritpJobs</a> module, but instead wraps the <code>OpenMaya.api.MSceneMessage</code> events.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">maya</span> <span class="kn">import</span> <span class="n">cmds</span>
+<span class="kn">from</span> <span class="nn">mGui</span> <span class="kn">import</span> <span class="n">gui</span><span class="p">,</span> <span class="n">forms</span><span class="p">,</span> <span class="n">sceneMessages</span>
+
+<span class="k">class</span> <span class="nc">AfterLoadReference</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_event</span> <span class="o">=</span> <span class="n">sceneMessages</span><span class="o">.</span><span class="n">BeforeSave</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_event</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_ui</span>
+
+
+    <span class="k">def</span> <span class="nf">dismiss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">cmds</span><span class="o">.</span><span class="n">deleteUI</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_win</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">create_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">gui</span><span class="o">.</span><span class="n">Window</span><span class="p">()</span> <span class="k">as</span> <span class="bp">self</span><span class="o">.</span><span class="n">_win</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">forms</span><span class="o">.</span><span class="n">FillForm</span><span class="p">()</span> <span class="k">as</span> <span class="n">form</span><span class="p">:</span>
+                <span class="n">btn</span> <span class="o">=</span> <span class="n">gui</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Dismiss&#39;</span><span class="p">)</span>
+        <span class="n">btn</span><span class="o">.</span><span class="n">command</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dismiss</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_win</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">enable_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_event</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">disable_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_event</span><span class="o">.</span><span class="n">kill</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_event</span> <span class="o">=</span> <span class="n">sceneMessages</span><span class="o">.</span><span class="n">BeforeSave</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_event</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_ui</span>
+
+
+<span class="n">alr</span> <span class="o">=</span> <span class="n">AfterLoadReference</span><span class="p">()</span>
+<span class="n">alr</span><span class="o">.</span><span class="n">enable_callback</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The above example creates a class that will spawn a simple window after you have loaded a reference file.</p>
+                      </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel-mgui" role="button" data-slide="prev" style="height: 40px; width: 40px">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel-mgui" role="button" data-slide="next" style="height: 40px; width: 40px">
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-test-page"> Test Page 
+                  <span class="pull-right">
+                  </span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-test-page" class="panel-collapse collapse show">
+              <div class="panel-body">
+                <p><em>Italic</em></p>
+<p><strong>Bold</strong></p>
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<p><a href="http://google.com">Link</a></p>
+<p><img alt="Image" src="https://www.google.com/logos/doodles/2017/st-patricks-day-2017-5654938628653056-scta.png"></p>
+<blockquote>
+<p>Blockquote</p>
+<p>Test</p>
+</blockquote>
+<p>A paragraph.</p>
+<p>A paragraph after 1 blank line.</p>
+<ul>
+<li>List 01</li>
+<li>List 02</li>
+<li>List 03<ul>
+<li>Test</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><code>Inline code</code> with backticks</p>
+<div class="highlight"><pre><span></span><span class="c1"># code block</span>
+<span class="k">print</span> <span class="s1">&#39;3 backticks or&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;indent 4 spaces&#39;</span>
+</pre></div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Links</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="https://github.com/bob-white"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+                <li class="list-group-item"><a href="https://www.linkedin.com/in/robertwhite8"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+                <li class="list-group-item"><a href="mailto:robert.wd.white@gmail.com"><i class="fa fa-envelope fa-lg"></i> Email</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+    </ul>
+</section>            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2017 Bob White
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="/theme/js/respond.min.js"></script>
+
+
+</body>
+</html>
