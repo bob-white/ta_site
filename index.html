@@ -74,7 +74,7 @@ Technical Art            </a>
                 </a>
               </h4>
             </div>
-            <div id="collapse-weather-system" class="panel-collapse collapse show">
+            <div id="collapse-weather-system">
               <div id="myCarousel-weather-system" class="carousel slide panel-body" data-ride="carousel" data-target="carousel" data-interval="false">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel-weather-system" data-slide-to="0"  class="active"> </li>
@@ -152,70 +152,6 @@ Technical Art            </a>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-maya-tools-deployment"> Maya Tools Deployment 
-                  <span class="pull-right">
-                    <img src="images/icons/maya.png" height="24px" width="24px"> 
-                    <img src="images/icons/python.png" height="24px" width="24px"> 
-                  </span>
-                </a>
-              </h4>
-            </div>
-            <div id="collapse-maya-tools-deployment" class="panel-collapse collapse show">
-              <div class="panel-body">
-                <p>Given our large number of concurrent projects, and usage of multiple engines we end up having to support multiple Maya versions.</p>
-<p>Some of our projects have been so long running that we often have to use older versions because plug-ins or required tools weren't updated to new ones.</p>
-<p>To help simplify our deployment process I converted our ancient Maya.env based system to one that uses <a href="http://help.autodesk.com/view/MAYAUL/2015/ENU/?guid=__files_GUID_130A3F57_2A5D_4E56_B066_6B86F68EEA22_htm">Maya Modules</a> instead.</p>
-<p>This actually let us define a bunch of individual modules, either for version specific tools, project specific code or just random environment variables needed to support other tools.</p>
-<div class="highlight">
-<pre style="font-size: 10px">
-+ MayaVERSION:2017 Tools_2017 1.0 E:/maya_libraries
-PYTHONPATH +:= maya_2017
-+ MayaVERSION:2016 Tools_2016 1.0 E:/maya_libraries
-PYTHONPATH +:= maya_2016
-+ MayaVERSION:2015 Tools_2015 1.0 E:/maya_libraries
-PYTHONPATH +:= maya_2015
-+ MayaVERSION:2015 Tools_2014 1.0 E:/maya_libraries
-PYTHONPATH +:= maya_2014
-+ MayaVERSION:2015 Tools_2013 1.0 E:/maya_libraries
-PYTHONPATH +:= maya_2013
-
-+ Tools 1.0 E:/maya_libraries
-PYTHONPATH +:= maya_tools.zip
-
-+ MayaLibraries 1.0 E:/maya_libraries
-PYTHONPATH +:= ags_libraries.zip
-PYTHONPATH +:= third_party_libraries.zip
-
-+ Resources 1.0 E:/Resources
-AUDIO_RESOURCES +:= sounds
-IMAGE_RESOURCES +:= images
-PYMEL_CACHE +:= pymel_cache
-PYMEL_CONF +:= pymel_conf
-
-+ Raw_Assets 1.0 E:/RawAssets
-PROJECT_01_ASSETS +:= project_01
-PROJECT_02_ASSETS +:= project_02
-PROJECT_03_ASSETS +:= project_03
-
-+ Project_01_Tools 1.0 E:/maya_libraries
-PYTHONPATH +:= project_01_tools.zip
-
-+ Perforce 1.0 None
-P4CLIENT = my_workspace
-P4PORT = localhost:1666
-P4USER = user
-</pre>
-</div>
-
-<p>The version specific section is for dealing with compiled libraries. Things like the p4python API, Qt, etc... this lets us keep these from being available across versions where the compiler version might have changed.</p>
-<p>Pure maya libraries are shipped out as zip files, this lets us easily package up tools, or libraries into contained deliverables and push them out to users all in one go.</p>
-<p>I actively keep third party libraries and tools separated from our internal ones, primarily to make upgrades and upstream integrations easier.</p>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse-player-factory"> Unity Tools
                   <span class="pull-right">
                     <img src="images/icons/unity.jpg" height="24px" width="24px"> 
@@ -223,7 +159,7 @@ P4USER = user
                 </a>
               </h4>
             </div>
-            <div id="collapse-player-factory" class="panel-collapse collapse show">
+            <div id="collapse-player-factory">
               <div id="myCarousel-player-factory" class="carousel slide panel-body" data-ride="carousel" data-target="carousel" data-interval="false">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel-player-factory" data-slide-to="0"  class="active"> </li>
@@ -280,6 +216,70 @@ P4USER = user
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-maya-tools-deployment"> Maya Tools Deployment 
+                  <span class="pull-right">
+                    <img src="images/icons/maya.png" height="24px" width="24px"> 
+                    <img src="images/icons/python.png" height="24px" width="24px"> 
+                  </span>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse-maya-tools-deployment">
+              <div class="panel-body">
+                <p>Given our large number of concurrent projects, and usage of multiple engines we end up having to support multiple Maya versions.</p>
+<p>Some of our projects have been so long running that we often have to use older versions because plug-ins or required tools weren't updated to new ones.</p>
+<p>To help simplify our deployment process I converted our ancient Maya.env based system to one that uses <a href="http://help.autodesk.com/view/MAYAUL/2015/ENU/?guid=__files_GUID_130A3F57_2A5D_4E56_B066_6B86F68EEA22_htm">Maya Modules</a> instead.</p>
+<p>This actually let us define a bunch of individual modules, either for version specific tools, project specific code or just random environment variables needed to support other tools.</p>
+<div class="highlight">
+<pre style="font-size: 10px">
++ MayaVERSION:2017 Tools_2017 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2017
++ MayaVERSION:2016 Tools_2016 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2016
++ MayaVERSION:2015 Tools_2015 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2015
++ MayaVERSION:2015 Tools_2014 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2014
++ MayaVERSION:2015 Tools_2013 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_2013
+
++ Tools 1.0 E:/maya_libraries
+PYTHONPATH +:= maya_tools.zip
+
++ MayaLibraries 1.0 E:/maya_libraries
+PYTHONPATH +:= ags_libraries.zip
+PYTHONPATH +:= third_party_libraries.zip
+
++ Resources 1.0 E:/Resources
+AUDIO_RESOURCES +:= sounds
+IMAGE_RESOURCES +:= images
+PYMEL_CACHE +:= pymel_cache
+PYMEL_CONF +:= pymel_conf
+
++ Raw_Assets 1.0 E:/RawAssets
+PROJECT_01_ASSETS +:= project_01
+PROJECT_02_ASSETS +:= project_02
+PROJECT_03_ASSETS +:= project_03
+
++ Project_01_Tools 1.0 E:/maya_libraries
+PYTHONPATH +:= project_01_tools.zip
+
++ Perforce 1.0 None
+P4CLIENT = my_workspace
+P4PORT = localhost:1666
+P4USER = user
+</pre>
+</div>
+
+<p>The version specific section is for dealing with compiled libraries. Things like the p4python API, Qt, etc... this lets us keep these from being available across versions where the compiler version might have changed.</p>
+<p>Pure maya libraries are shipped out as zip files, this lets us easily package up tools, or libraries into contained deliverables and push them out to users all in one go.</p>
+<p>I actively keep third party libraries and tools separated from our internal ones, primarily to make upgrades and upstream integrations easier.</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse-mgui"> mGui
                   <span class="pull-right">
                     <img src="images/icons/maya.png" height="24px" width="24px"> 
@@ -288,7 +288,7 @@ P4USER = user
                 </a>
               </h4>
             </div>
-            <div id="collapse-mgui" class="panel-collapse collapse show">
+            <div id="collapse-mgui">
               <div id="myCarousel-mgui" class="carousel slide panel-body" data-ride="carousel" data-target="carousel" data-interval="false">
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel-mgui" data-slide-to="0"  class="active"> </li>
@@ -519,49 +519,6 @@ Provides a few helper functions: <code>main_window</code>, <code>as_qt_object</c
               </div>
             </div>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-test-page"> Test Page 
-                  <span class="pull-right">
-                  </span>
-                </a>
-              </h4>
-            </div>
-            <div id="collapse-test-page" class="panel-collapse collapse show">
-              <div class="panel-body">
-                <p><em>Italic</em></p>
-<p><strong>Bold</strong></p>
-<h1>Heading 1</h1>
-<h2>Heading 2</h2>
-<h3>Heading 3</h3>
-<h4>Heading 4</h4>
-<h5>Heading 5</h5>
-<p><a href="http://google.com">Link</a></p>
-<p><img alt="Image" src="https://www.google.com/logos/doodles/2017/st-patricks-day-2017-5654938628653056-scta.png"></p>
-<blockquote>
-<p>Blockquote</p>
-<p>Test</p>
-</blockquote>
-<p>A paragraph.</p>
-<p>A paragraph after 1 blank line.</p>
-<ul>
-<li>List 01</li>
-<li>List 02</li>
-<li>List 03<ul>
-<li>Test</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><code>Inline code</code> with backticks</p>
-<div class="highlight"><pre><span></span><span class="c1"># code block</span>
-<span class="k">print</span> <span class="s1">&#39;3 backticks or&#39;</span>
-<span class="k">print</span> <span class="s1">&#39;indent 4 spaces&#39;</span>
-</pre></div>
-              </div>
-            </div>
-          </div>
     </div>
 
         </div>
@@ -575,6 +532,7 @@ Provides a few helper functions: <code>main_window</code>, <code>as_qt_object</c
                 <li class="list-group-item"><a href="https://github.com/bob-white"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
                 <li class="list-group-item"><a href="https://www.linkedin.com/in/robertwhite8"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
                 <li class="list-group-item"><a href="mailto:robert.wd.white@gmail.com"><i class="fa fa-envelope fa-lg"></i> Email</a></li>
+                <li class="list-group-item"><a href="pdfs/bwhite_resume_2016.pdf"><i class="fa fa-file-pdf-o fa-lg"></i> Resume</a></li>
               </ul>
             </li>
 
