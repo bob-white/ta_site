@@ -89,7 +89,7 @@ Technical Art            </a>
 <p>So my work on our weather and dynamic time of day system fell into the classic "TechArt is the bridge between Art and Engineering" category. The Art team came up with some really fantastic blueprint actors and shaders, but didn't have a clean why to tie it back into our scenario system or the UI. Plus it was hilariously expensive because it was updating on tick instead of on demand.</p>
 <p>After sitting down with the principle artists, and an engineer we hashed out a simple event driven system, and some native actor classes that the various blueprints could build from. This let us move from on tick to on demand updates, and gave engineering the needed ability to hook in with the various game systems.</p>
 <p>Because the engineers were booked up for the sprint, I went ahead and implemented the needed glue classes, and helped the artists convert their systems. Then in the following sprint the engineers went ahead and hooked everything together on their end.</p>
-<video width="320" height="240" controls>
+<video width="80%" controls>
     <source src="images/videos/realtime_weather.mp4" type="video/mp4">
     <img src="images/unreal/realtime_weather.gif" alt="Road Splines" width="100%">
 </video>
@@ -101,7 +101,10 @@ Technical Art            </a>
 <p>This was a really simple custom blueprint function that I added to help with our road spline tool. </p>
 <p>It lets you set a rotation value at one of the splines internal points instead of at the major control points.</p>
 <p>This was used to allow for more granular level of conformance to the underlying terrain.</p>
-<p><img src="images/unreal/road_splines.gif" alt="Road Splines" width="100%"></p>
+<video width="80%" controls>
+    <source src="images/videos/road_spline.mp4" type="video/mp4">
+    <img src="images/unreal/road_splines.gif" alt="Road Splines" width="100%">
+</video>
                       </div>
                     </div>
                        <div class="item" style="height: 650px">
@@ -112,8 +115,16 @@ Technical Art            </a>
 <p>After a bit of discussion I proposed the idea of skinning the mesh to a whole lot of bones, and baking the simulation onto that.</p>
 <p>The rest of the team made a quick prototype, which gave us positive results, I then helped optimize the baking and setup speed of the tool.</p>
 <p>After mixing in some regular particle effects, we were able to get some pretty decent, reproducible effects.</p>
-<p><img src="images/unreal/baked_physics_ied.gif" alt="Baked Physics IED" width="100%"></p>
-<p><img src="images/unreal/baked_physics_building.gif" alt="Baked Physics Building" width="100%"></p>
+<video width="80%" controls>
+    <source src="images/videos/baked_physics_IED.mp4" type="video/mp4">
+    <img src="images/unreal/baked_physics_ied.gif" alt="Baked Physics IED" width="100%">
+</video>
+
+<video width="80%" controls>
+    <source src="images/videos/baked_physics_building.mp4" type="video/mp4">
+    <img src="images/unreal/baked_physics_building.gif" alt="Baked Physics Building" width="100%">
+</video>
+
 <p>An interesting side effect of using skeletal meshes was that they could now collide push other physics bodies around.</p>
                       </div>
                     </div>
